@@ -9,3 +9,5 @@ Key Features:
 ✅ Weekly Plant Care Reminders – Custom schedules for watering, light exposure, and maintenance.
 
 By combining sensor fusion techniques with image-based exposure analysis, this project aims to create a more reliable and accessible plant light monitoring tool.
+🌿 Optimizing plant growth with smarter light sensing!
+
