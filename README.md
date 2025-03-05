@@ -13,10 +13,16 @@ By combining sensor fusion techniques with image-based exposure analysis, this p
 🌿 Optimizing plant growth with smarter light sensing!
 
 How to Use:
+
 Create a New Xcode Project
+
 Open Xcode and create a New Xcode Project.
+
 Select App (iOS/macOS) and set up the project as needed.
+
 Once the project is created:
 Drag and drop the Swift files from the repository into the Project Navigator (left panel).
+
 Ensure "Copy items if needed" is checked when prompted.
+
 You can now use the Swift files in your project.
