@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct GrowSenseApp: App {
+struct PlantLightPlusApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
         }
     }
 }

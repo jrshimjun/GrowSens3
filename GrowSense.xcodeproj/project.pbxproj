@@ -29,9 +29,22 @@
 		0AC760232D7FB2AC00AC24CB /* GrowSenseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrowSenseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0A022ED12D7FBBB60030E7D8 /* Exceptions for "GrowSense" folder in "GrowSense" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 0AC760072D7FB2AA00AC24CB /* GrowSense */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0AC7600A2D7FB2AA00AC24CB /* GrowSense */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0A022ED12D7FBBB60030E7D8 /* Exceptions for "GrowSense" folder in "GrowSense" target */,
+			);
 			path = GrowSense;
 			sourceTree = "<group>";
 		};
@@ -395,7 +408,8 @@
 				DEVELOPMENT_TEAM = JG56XX9237;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = /Users/jasonpark/GrowSense/GrowSense/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -434,7 +448,8 @@
 				DEVELOPMENT_TEAM = JG56XX9237;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = /Users/jasonpark/GrowSense/GrowSense/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
