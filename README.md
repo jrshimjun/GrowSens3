@@ -1,4 +1,4 @@
-#GrowSense
+GrowSense
 A smartphone-based plant light monitoring app that infers ambient light levels using camera sensor data, leveraging ISO sensitivity and exposure duration instead of relying solely on the ambient light sensor (ALS). This approach improves accuracy across different devices and lighting conditions.
 
 Key Features:
