@@ -6,12 +6,28 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
-struct PlantLightPlusApp: App {
+struct GrowSenseApp: App {
+    @AppStorage("hasSeenOnboarding") var hasSeenOnboarding = false
+
+    init() {
+        FirebaseApp.configure()
+        UserDefaults.standard.set(false, forKey: "hasSeenOnboarding") // can comment this out to prevent onboarding pages from appearing
+    }
+
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            if hasSeenOnboarding {
+                MainTabView()
+            } else {
+                OnboardingView()
+            }
         }
     }
 }
+
+
+
+

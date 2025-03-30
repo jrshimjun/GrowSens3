@@ -12,7 +12,7 @@ class LightSensorManager: NSObject, ObservableObject, AVCaptureVideoDataOutputSa
     private var device: AVCaptureDevice?
     
     @Published var brightness: Float = 0.0
-    @Published var lightCategory: String = "Unknown"  // New variable
+    @Published var lightCategory: String = "Unknown"
     
     override init() {
         super.init()
