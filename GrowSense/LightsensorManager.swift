@@ -14,6 +14,9 @@ class LightSensorManager: NSObject, ObservableObject, AVCaptureVideoDataOutputSa
     @Published var brightness: Float = 0.0
     @Published var lightCategory: String = "Unknown"
     
+    @Published var normalizedBrightness: Float = 0.0
+    private let maxBrightness: Float = 50.0 // 🌞 Tweak this value as needed
+    
     override init() {
         super.init()
         setupCamera()
@@ -46,10 +49,12 @@ class LightSensorManager: NSObject, ObservableObject, AVCaptureVideoDataOutputSa
         let iso = device.iso
         let exposureDuration = device.exposureDuration.seconds
         let brightnessEstimate = iso * Float(exposureDuration)
+
         
         DispatchQueue.main.async {
             self.brightness = brightnessEstimate
-            self.lightCategory = self.categorizeLight(brightnessEstimate) // Categorize light level
+            self.normalizedBrightness = min(brightnessEstimate / self.maxBrightness, 1.0)
+            self.lightCategory = self.categorizeLight(brightnessEstimate)
         }
     }
 

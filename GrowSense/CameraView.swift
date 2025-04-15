@@ -51,14 +51,29 @@ struct CameraView: View {
             // Graph and Values
             VStack(spacing: 20) {
                 ZStack {
+                    // Glow if 100%
+                    if lightSensorManager.normalizedBrightness >= 1.0 {
+                        Circle()
+                            .trim(from: 0.0, to: 1.0)
+                            .stroke(Color("DarkGreen").opacity(0.6), lineWidth: 20)
+                            .blur(radius: 10)
+                            .rotationEffect(.degrees(-90))
+                            .scaleEffect(1.1)
+                            .animation(.easeOut, value: lightSensorManager.normalizedBrightness)
+                    }
+
+                    // Background circle
                     Circle()
                         .stroke(Color.gray.opacity(0.2), lineWidth: 14)
 
+                    // Progress circle
                     Circle()
-                        .trim(from: 0.125, to: min(0.875, 0.125 + (CGFloat(lightSensorManager.brightness) / 10 * 0.75)))
+                        .trim(from: 0.0, to: CGFloat(lightSensorManager.normalizedBrightness))
                         .stroke(Color("DarkGreen"), style: StrokeStyle(lineWidth: 14, lineCap: .round))
-                        .rotationEffect(.degrees(135))
+                        .rotationEffect(.degrees(-90))
+                        .animation(.easeOut, value: lightSensorManager.normalizedBrightness)
 
+                    // Brightness Text
                     Text("\(lightSensorManager.brightness, specifier: "%.2f")")
                         .font(.system(size: 40, weight: .semibold))
                         .foregroundColor(Color("DarkGreen"))

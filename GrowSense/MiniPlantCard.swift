@@ -8,20 +8,27 @@
 import SwiftUI
 
 struct MiniPlantCard: View {
-    var name: String
-    var imageName: String
+    var plant: Plant
 
     var body: some View {
-        VStack {
-            Image(imageName)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 120, height: 120)
-            Text(name).font(.subheadline).bold()
+        NavigationLink(destination: PlantDetailView(plant: plant)) {
+            VStack {
+                Image(plant.imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 120, height: 120)
+
+                Text(plant.name)
+                    .font(.subheadline)
+                    .bold()
+                    .foregroundColor(.black)
+            }
+            .frame(width: UIScreen.main.bounds.width / 2 - 32, height: 180)
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 3)
         }
-        .frame(width: 150, height: 180)
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 3)
     }
 }
+
+
