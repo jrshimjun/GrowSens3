@@ -31,7 +31,7 @@ struct MainTabView: View {
         case .light:
             CameraView()
         case .camera:
-            CameraView()
+            PlantScanView()
         case .reminders:
             RemindersView()
         case .settings:

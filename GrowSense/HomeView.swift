@@ -21,7 +21,6 @@ struct HomeView: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) {
-                    // Top Bar
                     HStack {
                         Image(systemName: "leaf.circle")
                             .font(.system(size: 28))
@@ -41,7 +40,6 @@ struct HomeView: View {
                     
                     ScrollView {
                         VStack(alignment: .leading, spacing: 0) {
-                            // Welcome + Score
                             HStack {
                                 VStack(alignment: .leading) {
                                     Text("Hi Noynica!").font(.title2).fontWeight(.bold)
@@ -65,7 +63,6 @@ struct HomeView: View {
                             }
                             .padding(.horizontal)
                             
-                            // My Plants Section
                             Text("My Plants")
                                 .font(.title3)
                                 .fontWeight(.bold)
@@ -87,7 +84,6 @@ struct HomeView: View {
                                 .padding(.top, 8)
                             }
                             
-                            // Add Button
                             Button(action: {
                                 withAnimation { isLoading = true }
                                 showAddPlantSheet = true

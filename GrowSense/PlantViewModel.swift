@@ -21,11 +21,10 @@ struct Plant: Identifiable, Codable {
 
 class PlantViewModel: ObservableObject {
     @Published var myPlants: [Plant] = []
-    @Published var allPlants: [Plant] = [] // ✅ New for global plant list
+    @Published var allPlants: [Plant] = [] 
 
     private var db = Firestore.firestore()
 
-    // 🔄 Fetch all global plants from 'plants' collection
     func fetchAllPlants() {
         db.collection("plants").getDocuments { snapshot, error in
             guard let documents = snapshot?.documents else {
@@ -62,46 +61,61 @@ class PlantViewModel: ObservableObject {
         }
     }
 
-    // ✅ Already great — just adding to userPlants using name
     func addPlantByName(_ name: String) {
         db.collection("plants").whereField("name", isEqualTo: name).getDocuments { snapshot, error in
             if let error = error {
                 print("Error finding plant: \(error.localizedDescription)")
                 return
             }
-            guard let doc = snapshot?.documents.first else {
-                print("Plant not found in database")
-                return
-            }
 
-            let plantData = doc.data()
-            let imageName = plantData["imageName"] as? String ?? "defaultPlant"
-            let scientificName = plantData["scientificName"] as? String ?? ""
-            let description = plantData["description"] as? String ?? ""
-            let minLight = plantData["minLight"] as? Int ?? 0
-            let maxLight = plantData["maxLight"] as? Int ?? 1000
-            let waterFrequency = plantData["waterFrequency"] as? String ?? "Weekly"
+            if let doc = snapshot?.documents.first {
+                let plantData = doc.data()
+                let imageName = plantData["imageName"] as? String ?? "defaultPlant"
+                let scientificName = plantData["scientificName"] as? String ?? ""
+                let description = plantData["description"] as? String ?? ""
+                let minLight = plantData["minLight"] as? Int ?? 0
+                let maxLight = plantData["maxLight"] as? Int ?? 1000
+                let waterFrequency = plantData["waterFrequency"] as? String ?? "Weekly"
 
-            self.db.collection("userPlants").addDocument(data: [
-                "name": name,
-                "imageName": imageName,
-                "scientificName": scientificName,
-                "description": description,
-                "minLight": minLight,
-                "maxLight": maxLight,
-                "waterFrequency": waterFrequency
-            ]) { err in
-                if let err = err {
-                    print("Error adding to userPlants: \(err.localizedDescription)")
-                } else {
-                    print("Successfully added to userPlants")
-                    self.fetchUserPlants()
+                self.db.collection("userPlants").addDocument(data: [
+                    "name": name,
+                    "imageName": imageName,
+                    "scientificName": scientificName,
+                    "description": description,
+                    "minLight": minLight,
+                    "maxLight": maxLight,
+                    "waterFrequency": waterFrequency
+                ]) { err in
+                    if let err = err {
+                        print("Error adding to userPlants: \(err.localizedDescription)")
+                    } else {
+                        self.fetchUserPlants()
+                    }
+                }
+
+            } else {
+                print("Plant not found in global DB. Adding as fallback.")
+
+                self.db.collection("userPlants").addDocument(data: [
+                    "name": name,
+                    "imageName": "defaultPlant",
+                    "scientificName": "Unknown",
+                    "description": "No description available.",
+                    "minLight": 0,
+                    "maxLight": 1000,
+                    "waterFrequency": "Weekly"
+                ]) { err in
+                    if let err = err {
+                        print("Error adding fallback plant: \(err.localizedDescription)")
+                    } else {
+                        self.fetchUserPlants()
+                    }
                 }
             }
         }
     }
 
-    // ✅ Already solid
+
     func fetchUserPlants() {
         db.collection("userPlants").getDocuments { snapshot, error in
             guard let documents = snapshot?.documents else {

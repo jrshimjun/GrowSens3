@@ -14,13 +14,14 @@ struct GrowSenseApp: App {
 
     init() {
         FirebaseApp.configure()
-        UserDefaults.standard.set(false, forKey: "hasSeenOnboarding") // can comment this out to prevent onboarding pages from appearing
+        UserDefaults.standard.set(false, forKey: "hasSeenOnboarding") 
     }
 
     var body: some Scene {
         WindowGroup {
             if hasSeenOnboarding {
                 MainTabView()
+                    .environmentObject(PlantViewModel())
             } else {
                 OnboardingView()
             }

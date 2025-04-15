@@ -15,7 +15,7 @@ class LightSensorManager: NSObject, ObservableObject, AVCaptureVideoDataOutputSa
     @Published var lightCategory: String = "Unknown"
     
     @Published var normalizedBrightness: Float = 0.0
-    private let maxBrightness: Float = 50.0 // 🌞 Tweak this value as needed
+    private let maxBrightness: Float = 50.0
     
     override init() {
         super.init()
@@ -58,7 +58,6 @@ class LightSensorManager: NSObject, ObservableObject, AVCaptureVideoDataOutputSa
         }
     }
 
-    // Function to categorize light levels based on ISO × exposure time
     private func categorizeLight(_ value: Float) -> String {
         switch value {
         case 0.0..<5:

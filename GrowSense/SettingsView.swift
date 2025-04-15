@@ -8,18 +8,38 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        VStack {
-            Text("Settings Coming Soon...")
-                .font(.title)
-                .padding()
-        }
-    }
-}
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
         NavigationView {
-            SettingsView()
+            List {
+                Section(header: Text("App")) {
+                    HStack {
+                        Image(systemName: "gear")
+                        Text("Version")
+                        Spacer()
+                        Text("1.0.0")
+                            .foregroundColor(.gray)
+                    }
+
+                    HStack {
+                        Image(systemName: "bell")
+                        Text("Notifications")
+                        Spacer()
+                        Text("Enabled")
+                            .foregroundColor(.green)
+                    }
+                }
+
+                Section(header: Text("Support")) {
+                    NavigationLink(destination: Text("Coming soon")) {
+                        Label("Send Feedback", systemImage: "envelope")
+                    }
+
+                    NavigationLink(destination: Text("Coming soon")) {
+                        Label("About GrowSense", systemImage: "info.circle")
+                    }
+                }
+            }
+            .navigationTitle("Settings")
+            .listStyle(InsetGroupedListStyle())
         }
     }
 }

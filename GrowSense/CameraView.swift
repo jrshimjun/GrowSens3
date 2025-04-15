@@ -62,11 +62,9 @@ struct CameraView: View {
                             .animation(.easeOut, value: lightSensorManager.normalizedBrightness)
                     }
 
-                    // Background circle
                     Circle()
                         .stroke(Color.gray.opacity(0.2), lineWidth: 14)
 
-                    // Progress circle
                     Circle()
                         .trim(from: 0.0, to: CGFloat(lightSensorManager.normalizedBrightness))
                         .stroke(Color("DarkGreen"), style: StrokeStyle(lineWidth: 14, lineCap: .round))
@@ -86,7 +84,7 @@ struct CameraView: View {
                     .frame(width: 75, height: 75)
                     .padding(.top, -12)
 
-                Text("Light levels are just right!")
+                Text("Adjust lighting to desired level")
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
