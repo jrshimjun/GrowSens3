@@ -36,8 +36,9 @@ class LightSensorManager: NSObject, ObservableObject, AVCaptureVideoDataOutputSa
             let output = AVCaptureVideoDataOutput()
             output.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
             captureSession.addOutput(output)
-            
-            captureSession.startRunning()
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.captureSession.startRunning()
+            }
         } catch {
             print("Error setting up camera: \(error)")
         }

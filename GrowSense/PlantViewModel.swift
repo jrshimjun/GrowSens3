@@ -114,7 +114,21 @@ class PlantViewModel: ObservableObject {
             }
         }
     }
+    func deleteManualPlant(at offsets: IndexSet) {
+        myPlants.remove(atOffsets: offsets)
+    }
 
+    
+    func deletePlant(_ plant: Plant) {
+        db.collection("userPlants").document(plant.id).delete { error in
+            if let error = error {
+                print("Error deleting plant: \(error.localizedDescription)")
+            } else {
+                print("Deleted plant: \(plant.name)")
+                self.fetchUserPlants() 
+            }
+        }
+    }
 
     func fetchUserPlants() {
         db.collection("userPlants").getDocuments { snapshot, error in

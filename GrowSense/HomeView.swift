@@ -104,12 +104,11 @@ struct HomeView: View {
                             .padding(.horizontal)
                             .padding(.top, 10)
                             
-                            // Static Plant DB
                             VStack(alignment: .leading, spacing: 8) {
                                 HStack {
                                     Text("Plant Database").font(.headline)
                                     Spacer()
-                                    NavigationLink(destination: AllPlantsView(plants: plantVM.allPlants)) {
+                                    NavigationLink(destination: AllPlantsView(viewModel: plantVM)) {
                                         Text("View all")
                                             .foregroundColor(Color("DarkGreen"))
                                             .font(.subheadline)
@@ -120,9 +119,10 @@ struct HomeView: View {
                                 
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     LazyHStack(spacing: 15) {
-                                        ForEach(plantVM.allPlants) { plant in
+                                        ForEach(plantVM.myPlants, id: \.id) { plant in
                                             MiniPlantCard(plant: plant)
                                         }
+                                        .onDelete(perform: plantVM.deleteManualPlant)
                                     }
                                     .padding(.horizontal, 20)
                                 }
